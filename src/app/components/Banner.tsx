@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Banner.module.css";
 
 const slides = [
@@ -13,27 +13,50 @@ const slides = [
 export default function Banner() {
   const [current, setCurrent] = useState(0);
 
-  const nextSlide = () => setCurrent((current + 1) % slides.length);
-  const prevSlide = () => setCurrent((current - 1 + slides.length) % slides.length);
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
+  // Auto slide cada 5 segundos
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className={styles.banner}>
-      <button className={`${styles.arrow} ${styles.left}`} onClick={prevSlide}>&#10094;</button>
+      <button className={`${styles.arrow} ${styles.left}`} onClick={prevSlide}>
+        &#10094;
+      </button>
 
-      <div className={styles.slide}>
-        <img src={slides[current].image} alt={slides[current].title} />
-        <div className={styles.text}>
-          <h2>{slides[current].title}</h2>
-          <p>{slides[current].description}</p>
-          <a href={slides[current].link} className={styles.button}>{slides[current].buttonText}</a>
-        </div>
+      <div className={styles.sliderContainer}>
+        {slides.map((slide, idx) => (
+          <div
+            key={idx}
+            className={`${styles.slide} ${idx === current ? styles.activeSlide : ""}`}
+          >
+            <img src={slide.image} alt={slide.title} />
+            <div className={styles.text}>
+              <h2>{slide.title}</h2>
+              <p>{slide.description}</p>
+              <a href={slide.link} className={styles.button}>
+                {slide.buttonText}
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <button className={`${styles.arrow} ${styles.right}`} onClick={nextSlide}>&#10095;</button>
+      <button className={`${styles.arrow} ${styles.right}`} onClick={nextSlide}>
+        &#10095;
+      </button>
 
       <div className={styles.dots}>
         {slides.map((_, idx) => (
-          <span key={idx} className={`${styles.dot} ${idx === current ? styles.active : ""}`} onClick={() => setCurrent(idx)}></span>
+          <span
+            key={idx}
+            className={`${styles.dot} ${idx === current ? styles.active : ""}`}
+            onClick={() => setCurrent(idx)}
+          ></span>
         ))}
       </div>
     </div>

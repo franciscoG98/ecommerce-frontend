@@ -1,78 +1,104 @@
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
+  position: relative;
   width: 200px;
-  margin: 10px;
-  box-sizing: border-box;
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative; /* <- esto es clave */
+  max-width: 100%;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
 }
 
-
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.discountBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #0a7f0a;
+  color: #fff;
+  padding: 4px 6px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  padding-top: 125%; /* Mantiene proporción 4:5 aprox. */
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .productImage {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  border-radius: 4px;
+  height: 100%;
+  object-fit: contain; /* muestra todo el producto sin recortar */
+  object-position: center;
+  display: block;
 }
 
+/* Texto */
 .productName {
-  margin: 5px 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  margin: 10px 0 6px;
+  line-height: 1.25;
+  height: 2.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productPrice {
-  color: green;
-  font-weight: bold;
+  font-weight: 700;
+  color: #222;
   margin-bottom: 10px;
 }
 
-.buyButton {
+/* Botón naranja tipo banner */
+.addToCartButton {
   background-color: #f0a500;
+  color: black;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  color: white;
+  padding: 8px 12px;
+  font-weight: 700;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-bottom: 10px; /* <--- separa del borde de la card */
+  transition: background-color 0.22s ease, transform 0.12s ease, box-shadow 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-.buyButton:hover {
-  background-color: #d18c00;
-  transform: scale(1.05);
+.addToCartButton:hover {
+  background-color: #c07a00;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .card {
-    width: 45%;
-    margin: 5px;
+    width: 92%;
+    padding: 14px;
   }
-}
 
-@media (max-width: 480px) {
-  .card {
-    width: 90%;
-    margin: 5px auto;
+  .imageWrap {
+    padding-top: 140%; /* un poco más alto para móvil */
   }
-}
 
-.discountBadge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background-color: #d18c00; /* amarillo oscuro */
-  color: white;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  z-index: 10;
+  .productName {
+    font-size: 1rem;
+    height: auto;
+  }
 }

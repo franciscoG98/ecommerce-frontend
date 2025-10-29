@@ -1,31 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import styles from "./Navbar.module.css";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link href="/">ClotheShop</Link>
+        <a href="/">ClotheShop</a>
       </div>
 
-      <ul className={`${styles.navLinks} ${isOpen ? styles.active : ""}`}>
-        <li><Link href="/">Inicio</Link></li>
-        <li><Link href="/ofertas">Ofertas</Link></li>
-        <li><Link href="/acerca">Acerca de</Link></li>
-        <li><Link href="/atencion">Atención</Link></li>
-        <li><Link href="/carrito">Carrito</Link></li>
+      <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/ofertas">Ofertas</a></li>
+        <li><a href="/acerca">Acerca de</a></li>
+        <li><a href="/atencion">Atención al Cliente</a></li>
+        <li>
+          <a href="/carrito" className={styles.cartLink}>
+            <FaShoppingCart style={{ marginRight: "5px" }} />
+            Carrito
+          </a>
+        </li>
       </ul>
 
-      <div className={styles.hamburger} onClick={() => setIsOpen(!isOpen)}>
-        <span className={styles.bar}></span>
-        <span className={styles.bar}></span>
-        <span className={styles.bar}></span>
+      <div className={styles.hamburger} onClick={toggleMenu}>
+        <div className={styles.bar}></div>
+        <div className={styles.bar}></div>
+        <div className={styles.bar}></div>
       </div>
     </nav>
   );
 }
+

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import ProductCard from "./components/ProductCard";
+import { useCart } from "./components/CartContext";
 import styles from "./page.module.css";
 
 interface Product {
@@ -15,6 +16,7 @@ interface Product {
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -23,19 +25,18 @@ export default function Home() {
         const clothing = data.filter(
           p => p.category === "men's clothing" || p.category === "women's clothing"
         );
-        setProducts(clothing);
+        setProducts(clothing.slice(0, 10)); // mostramos primero 10 prendas
       })
-      .catch(err => console.error("Error fetching products:", err));
+      .catch(err => console.error(err));
   }, []);
 
   return (
     <main className={styles.main} style={{ paddingTop: 0 }}>
-      {/* Banner arriba */}
       <Banner />
 
-      {/* Productos destacados */}
       <section className={styles.products}>
         <h2>Productos Destacados</h2>
+
         {products.length === 0 ? (
           <p>Cargando productos...</p>
         ) : (
@@ -43,9 +44,10 @@ export default function Home() {
             {products.map(product => (
               <ProductCard
                 key={product.id}
-                name={product.title}
+                title={product.title}
                 price={`$${product.price.toFixed(2)}`}
                 image={product.image}
+                // onAddToCart handled inside ProductCard via useCart
               />
             ))}
           </div>
@@ -54,3 +56,4 @@ export default function Home() {
     </main>
   );
 }
+

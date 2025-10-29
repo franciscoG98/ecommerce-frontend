@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const NAVBAR_HEIGHT = 72; // ajustar según tu navbar
+  const NAVBAR_HEIGHT = 72; // altura del navbar
 
   return (
     <html lang="es">

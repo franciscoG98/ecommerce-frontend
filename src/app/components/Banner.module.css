@@ -5,20 +5,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px; /* altura mínima */
-  margin-top: 0; /* pegado al navbar */
+  min-height: 400px;
+  margin-top: 0;
 }
 
-.slide {
+.sliderContainer {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.activeSlide {
+  opacity: 1;
+  z-index: 1;
 }
 
 .slide img {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  display: block;
 }
 
 .text {
@@ -27,11 +43,18 @@
   left: 10%;
   transform: translateY(-50%);
   color: white;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
-.text h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-.text p { font-size: 1rem; margin-bottom: 1rem; }
+.text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.text p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
 
 .button {
   display: inline-block;
@@ -44,7 +67,9 @@
   transition: background-color 0.3s ease;
 }
 
-.button:hover { background-color: #c07a00; }
+.button:hover {
+  background-color: #c07a00;
+}
 
 /* Flechas */
 .arrow {
@@ -53,7 +78,7 @@
   transform: translateY(-50%);
   font-size: 2rem;
   color: white;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border: none;
   cursor: pointer;
   z-index: 10;
@@ -62,9 +87,17 @@
   transition: background-color 0.2s;
 }
 
-.arrow:hover { background-color: rgba(0,0,0,0.6); }
-.left { left: 1rem; }
-.right { right: 1rem; }
+.arrow:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.left {
+  left: 1rem;
+}
+
+.right {
+  right: 1rem;
+}
 
 /* Dots */
 .dots {
@@ -79,18 +112,28 @@
 .dot {
   width: 12px;
   height: 12px;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.active { background-color: #f0a500; }
+.active {
+  background-color: #f0a500;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
-  .slide img { height: 250px; }
-  .text { left: 5%; }
-  .text h2 { font-size: 1.5rem; }
-  .text p { font-size: 0.9rem; }
+  .slide img {
+    height: 250px;
+  }
+  .text {
+    left: 5%;
+  }
+  .text h2 {
+    font-size: 1.5rem;
+  }
+  .text p {
+    font-size: 0.9rem;
+  }
 }

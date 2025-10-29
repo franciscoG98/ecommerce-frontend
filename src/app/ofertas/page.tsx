@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import styles from "../page.module.css"; // usamos el mismo estilo de grid de productos
+import { useCart } from "../components/CartContext";
+import styles from "./Ofertas.module.css";
 
 interface Product {
   id: number;
@@ -12,45 +13,37 @@ interface Product {
   image: string;
 }
 
-export default function OfertasPage() {
+export default function Ofertas() {
   const [products, setProducts] = useState<Product[]>([]);
+  const { addToCart } = useCart(); // si querés usarlo aquí, pero ProductCard lo maneja
 
   useEffect(() => {
-    // Traemos todos los productos
     fetch("https://fakestoreapi.com/products")
       .then(res => res.json())
       .then((data: Product[]) => {
-        // Filtramos solo ropa y accesorios
-        const filtered = data.filter(
-          p =>
-            p.category === "men's clothing" ||
-            p.category === "women's clothing" ||
-            p.category === "jewelery"
+        const clothing = data.filter(
+          p => p.category === "men's clothing" || p.category === "women's clothing"
         );
-        setProducts(filtered);
+        // 5 en oferta
+        setProducts(clothing.slice(0, 5));
       })
-      .catch(err => console.error("Error fetching products:", err));
+      .catch(err => console.error(err));
   }, []);
 
   return (
     <main className={styles.main}>
-      <section className={styles.products}>
-        <h2>Ofertas Destacadas</h2>
-        {products.length === 0 ? (
-          <p>Cargando productos...</p>
-        ) : (
-          <div className={styles.productGrid}>
-            {products.map(product => (
-              <ProductCard
-                key={product.id}
-                name={product.title}
-                price={`$${product.price.toFixed(2)}`}
-                image={product.image}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+      <h2 className={styles.title}>Ofertas Especiales - 20% OFF</h2>
+      <div className={styles.productGrid}>
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            title={product.title}
+            price={`$${(product.price * 0.8).toFixed(2)}`}
+            image={product.image}
+            discount={"20%"}
+          />
+        ))}
+      </div>
     </main>
   );
 }
