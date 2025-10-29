@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  padding-top: 70px; /* Altura del navbar para que el contenido no quede debajo */
+}
+
+.products {
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 60px; /* separa del footer */
+}
+
+.products h2 {
+  margin-bottom: 20px;
+}
+
+.productGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* espacio entre cards */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main {
+    padding-top: 100px; /* navbar más alto en móvil si tiene menú expandido */
+  }
+
+  .productGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
