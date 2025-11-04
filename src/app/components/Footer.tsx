@@ -23,9 +23,9 @@ export default function Footer() {
         <div className={styles.column}>
           <h4>Redes</h4>
           <ul>
-            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</Link></li>
+            <li><Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</Link></li>
+            <li><Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</Link></li>
           </ul>
         </div>
       </div>

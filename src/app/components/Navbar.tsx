@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCart } from "./CartContext";
 import styles from "./Navbar.module.css";
 import { FaShoppingCart } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,16 +15,16 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="/">ClotheShop</a>
+        <Link href="/">ClotheShop</Link>
       </div>
 
       <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/ofertas">Ofertas</a></li>
-        <li><a href="/acerca">Acerca de</a></li>
-        <li><a href="/atencion">Atención al Cliente</a></li>
+        <li><Link href="/">Inicio</Link></li>
+        <li><Link href="/ofertas">Ofertas</Link></li>
+        <li><Link href="/acerca">Acerca de</Link></li>
+        <li><Link href="/atencion">Atención al Cliente</Link></li>
         <li>
-          <a href="/carrito" className={styles.cartLink}>
+          <Link href="/carrito" className={styles.cartLink}>
             <FaShoppingCart style={{ marginRight: "5px" }} />
             Carrito
             {cartItems.length > 0 && (
@@ -31,7 +32,7 @@ export default function Navbar() {
                 {cartItems.length}
               </span>
             )}
-          </a>
+          </Link>
         </li>
       </ul>
 

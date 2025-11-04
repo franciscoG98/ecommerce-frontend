@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./Banner.module.css";
+import Link from "next/link";
 
 const slides = [
   { image: "/slider/slide1.jpg", title: "Colección Primavera", description: "Descubrí nuestras últimas prendas", buttonText: "Comprar", link: "/ofertas" },
@@ -38,9 +39,9 @@ export default function Banner() {
             <div className={styles.text}>
               <h2>{slide.title}</h2>
               <p>{slide.description}</p>
-              <a href={slide.link} className={styles.button}>
+              <Link href={slide.link} className={styles.button}>
                 {slide.buttonText}
-              </a>
+              </Link>
             </div>
           </div>
         ))}
