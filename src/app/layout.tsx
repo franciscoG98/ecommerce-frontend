@@ -3,6 +3,7 @@ import "./globals.css";
 import { CartProvider } from "./components/CartContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Mi Tienda Online",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
         </CartProvider>
+        <ToastContainer />
       </body>
     </html>
   );

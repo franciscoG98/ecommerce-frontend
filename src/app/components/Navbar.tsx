@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "./CartContext";
 import styles from "./Navbar.module.css";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { cartItems } = useCart()
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -24,6 +26,11 @@ export default function Navbar() {
           <a href="/carrito" className={styles.cartLink}>
             <FaShoppingCart style={{ marginRight: "5px" }} />
             Carrito
+            {cartItems.length > 0 && (
+              <span className={styles.badge_cart_navbar}>
+                {cartItems.length}
+              </span>
+            )}
           </a>
         </li>
       </ul>

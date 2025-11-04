@@ -41,6 +41,17 @@
   color: #f0a500;
 }
 
+.badge_cart_navbar {
+  background-color: red;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  position: relative;
+  margin-left: 8px;
+  bottom: 12px;
+}
+
 /* Hamburger */
 .hamburger {
   display: none;

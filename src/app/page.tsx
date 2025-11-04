@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import ProductCard from "./components/ProductCard";
-import { useCart } from "./components/CartContext";
 import styles from "./page.module.css";
 
 interface Product {
@@ -16,7 +15,6 @@ interface Product {
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -47,7 +45,6 @@ export default function Home() {
                 title={product.title}
                 price={`$${product.price.toFixed(2)}`}
                 image={product.image}
-                // onAddToCart handled inside ProductCard via useCart
               />
             ))}
           </div>
