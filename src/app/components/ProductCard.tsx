@@ -3,6 +3,8 @@
 import { useCart } from "./CartContext";
 import styles from "./ProductCard.module.css";
 import { FaShoppingCart } from "react-icons/fa";
+import Image from "next/image";
+import { toast } from 'react-toastify';
 
 interface ProductCardProps {
   title: string;
@@ -16,14 +18,24 @@ export default function ProductCard({ title, price, image, discount }: ProductCa
 
   const handleAddToCart = () => {
     addToCart({ name: title, price, image });
-    alert(`"${title}" se agregó al carrito ✅`);
+    toast.success(`"${title}" se agregó exitosamente al carrito ✅`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
   };
 
   return (
     <div className={styles.card}>
       {discount && <div className={styles.discountBadge}>{discount} OFF</div>}
       <div className={styles.imageWrap}>
-        <img src={image} alt={title} className={styles.productImage} />
+        <Image width={120} height={120} src={image} alt={title} className={styles.productImage} />
       </div>
 
       <h3 className={styles.productName}>{title}</h3>
