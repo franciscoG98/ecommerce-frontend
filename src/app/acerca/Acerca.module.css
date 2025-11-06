@@ -1,0 +1,33 @@
+.copy {
+    width: 420px;
+    margin: 24px auto;
+    text-align: start;
+}
+
+.colaborators {
+    list-style: disc;
+    width: 420px;
+    margin: 0 auto;
+    text-align: start;
+    margin-bottom: 24px;
+}
+
+.github_link {
+    color: #fff;
+}
+
+.github_link:hover {
+    text-decoration: none;
+    transition: 2s ease-in;
+}
+
+.tech_stack_container {
+    width: 420px;
+    margin: 0 auto;
+}
+
+.tech_stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
